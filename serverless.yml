@@ -1,0 +1,24 @@
+service: albert-lambda-service
+
+frameworkVersion: '4.x'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${env:AWS_REGION}
+  # environment:
+  #   DB_HOST: ${env:DB_HOST}
+  #   DB_USER: ${env:DB_USER}
+  #   OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+
+functions:
+  processAudio:
+    handler: functions/processAudio/handler.handler
+    events:
+      - http:
+          path: audio/process
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin

@@ -1,0 +1,77 @@
+{
+  "/Users/fabiocastagnolav/Documents/GitHub/Alberto-org/albert-lambda/serverless.yml": {
+    "versionFramework": "4.17.2",
+    "servicePath": "/Users/fabiocastagnolav/Documents/GitHub/Alberto-org/albert-lambda/serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "albert-lambda-service",
+      "frameworkVersion": "4.x",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-east-1",
+        "environment": {
+          "DB_HOST": "${env:DB_HOST}",
+          "DB_USER": "${env:DB_USER}",
+          "OPENAI_API_KEY": "<REDACTED>"
+        }
+      },
+      "functions": {
+        "processAudio": {
+          "handler": "functions/processAudio.handler",
+          "events": [
+            {
+              "http": {
+                "path": "audio/process",
+                "method": "post"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-offline",
+        "serverless-dotenv-plugin"
+      ]
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "region": "us-east-1",
+      "environment": {
+        "DB_HOST": "${env:DB_HOST}",
+        "DB_USER": "${env:DB_USER}",
+        "OPENAI_API_KEY": "<REDACTED>"
+      }
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": true,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "error": {
+      "message": "Cannot resolve '${env:DB_HOST}' variable at 'provider.environment.DB_HOST'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.",
+      "stack": "Error: Cannot resolve '${env:DB_HOST}' variable at 'provider.environment.DB_HOST'. No value is available for this variable, and no default value was provided. Please check your variable definitions or provide a default value.\n    at _ResolverManager.resolve (file:///Users/fabiocastagnolav/.serverless/releases/4.17.2/package/dist/sf-core.js:809:31911)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async #handlePlaceholderNode (file:///Users/fabiocastagnolav/.serverless/releases/4.17.2/package/dist/sf-core.js:809:30118)\n    at async file:///Users/fabiocastagnolav/.serverless/releases/4.17.2/package/dist/sf-core.js:809:27990\n    at async processNodeAndHandleCompletion (file:///Users/fabiocastagnolav/.serverless/releases/4.17.2/package/dist/sf-core.js:809:16769)",
+      "code": "MISSING_VARIABLE_RESULT"
+    },
+    "serviceRawFile": "service: albert-lambda-service\n\nframeworkVersion: '4.x'\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  region: ${env:AWS_REGION}\n  environment:\n    DB_HOST: ${env:DB_HOST}\n    DB_USER: ${env:DB_USER}\n    OPENAI_API_KEY: ${env:OPENAI_API_KEY}\n\nfunctions:\n  processAudio:\n    handler: functions/processAudio.handler\n    events:\n      - http:\n          path: audio/process\n          method: post\n\nplugins:\n  - serverless-offline\n  - serverless-dotenv-plugin",
+    "command": [
+      "offline",
+      "start"
+    ],
+    "options": {},
+    "orgId": "e20fa2ea-57d6-44f3-983c-0ee09d05e3b2",
+    "orgName": "castagnola",
+    "userId": "mVQ22ghFNmbbL63v5Z",
+    "userName": "castagnola",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
